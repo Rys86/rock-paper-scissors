@@ -5,10 +5,10 @@ function userInput(userChoice, i) {
   let promption;
   if (userChoice) {
     // | computer is making the request for next choice
-    return showPrompt(`Round number: ${i}! Make your choice: rock, paper or scissors`, i);
+    return showPrompt(`Round number: ${i}!\n\nMake your choice: "rock", "paper" or "scissors":\n`, i);
   } else {
     //Computer is asking passing the greetings and asking for the first choice
-    return showPrompt("Hello User, this is first round! Make your choice: rock, paper or scissors", i);
+    return showPrompt('Hello User, this is first round!\n\nMake your choice: "rock", "paper" or "scissors":\n', i);
   }
 }
 
@@ -23,11 +23,16 @@ function promptValidation(userChoice, i) {
     return userChoice;
   } else { 
     // | if users imput is invalid, computer is asking for imput once again
-    window.alert(`Incorrect input value: ${userChoice}, please, type one of those: rock, paper or scissors`)
+    window.alert(`Incorrect input value: "${userChoice}"!\n\nPlease,type one of those: "rock", "paper" or "scissors"`)
     return userInput(userChoice, i);
   }
 }
 
+/* debuging:
+let choice = "nothing";
+console.log(`choice type: ${choice}`)
+console.log(`userInlut function result: ${userInput(choice, 1)}`);
+*/
 // -> function: computerPlay
 // |Computer is drawing a lots 
 // -> function: playRound:
