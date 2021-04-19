@@ -3,7 +3,7 @@
 // -> function: userInput
 function userInput(userChoice, i) {
   let promption;
-  if (userChoice) {
+  if (userChoice && i > 1) {
     // | computer is making the request for next choice
     return showPrompt(`Round number: ${i}!\n\nMake your choice: "rock", "paper" or "scissors":\n`, i);
   } else {
@@ -50,8 +50,17 @@ for (let i = 0; i < 15; i++) {
   console.log(`result no ${i} of computerPlay function: ${computerPlay()}`);
 }
 */
-// |Computer is drawing a lots 
 // -> function: playRound:
+function playRound(i) {
+  let userChoice;
+  let computerChoice;
+  // | Program is displaying the round number
+  window.alert(`Paper Rock Scissor game!\n\n Round Number ${i}`);
+  // | Program is asking for user's input
+  userChoice = userInput(userChoice, i);
+  // | Program is asking for computer's input
+  computerChoice = computerPlay();
+}
 // | program is comparing his choice with users choice
 // | program is giving the feedback who wins the round 
 // - > Function: game
