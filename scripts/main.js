@@ -60,7 +60,12 @@ function playRound(i) {
   userChoice = userInput(userChoice, i);
   // | Program is asking for computer's input
   computerChoice = computerPlay();
-  let result = ;
+  // | run the comparing function
+  let result = compareChoices(userChoice,computerChoice,relations(userChoice));
+  // | show the message about result:
+  window.alert(result.message);
+  // | return round score
+  return {user: result.user, computer: result.computer}
 }
 // | set relation between choices in regards to user's choice
 function relations(userChoice) {
