@@ -60,6 +60,7 @@ function playRound(i) {
   userChoice = userInput(userChoice, i);
   // | Program is asking for computer's input
   computerChoice = computerPlay();
+  let result = ;
 }
 // | set relation between choices in regards to user's choice
 function relations(userChoice) {
@@ -90,6 +91,15 @@ function relations(userChoice) {
   return relation;
 }
 // | program is comparing his choice with users choice
+function compareChoices(userChoice, computerChoice, relation) {
+  if (relation[userChoice] > relation[computerChoice]) {
+    return {message: `Congratulations: ${userChoice} bits ${computerChoice}!\n\nUser wins!`, user:1,computer:0};
+  } else if (relation[userChoice] < relation[computerChoice]) {
+    return {message: `Sorry: ${computerChoice} bits ${userChoice}!\n\nComputer wins!`, user:0,computer:1};
+  } else if (relation[userChoice] == relation[computerChoice]) {
+    return {message: `Round ends with draw!\n\nBoth Plyers choice was: ${computerChoice}`, user:1,computer:1};
+  }
+}
 // | program is giving the feedback who wins the round 
 // - > Function: game
 // | Program is playing 5 rounds
