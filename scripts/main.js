@@ -61,6 +61,34 @@ function playRound(i) {
   // | Program is asking for computer's input
   computerChoice = computerPlay();
 }
+// | set relation between choices in regards to user's choice
+function relations(userChoice) {
+  let relation
+  switch (userChoice) {
+    case "rock":
+      relation = {
+        rock: 1,
+        paper: 2,
+        scissors: 0
+      }
+      break;
+    case "paper":
+      relation = {
+        rock: 0,
+        paper: 1,
+        scissors: 2
+      }
+      break;
+    case "scissors":
+      relation = {
+        rock: 2,
+        paper: 0,
+        scissors: 1
+      }
+      break;
+  }
+  return relation;
+}
 // | program is comparing his choice with users choice
 // | program is giving the feedback who wins the round 
 // - > Function: game
