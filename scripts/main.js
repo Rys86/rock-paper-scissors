@@ -60,8 +60,11 @@ function playRound(i) {
   userChoice = userInput(userChoice, i);
   // | Program is asking for computer's input
   computerChoice = computerPlay();
+  // debuging:
+  //console.log(`computer choice: ${computerChoice}\nuser choice: ${userChoice}`)
   // | run the comparing function
   let result = compareChoices(userChoice,computerChoice,relations(userChoice));
+  // | program is giving the feedback who wins the round 
   // | show the message about result:
   window.alert(result.message);
   // | return round score
@@ -105,7 +108,11 @@ function compareChoices(userChoice, computerChoice, relation) {
     return {message: `Round ends with draw!\n\nBoth Plyers choice was: ${computerChoice}`, user:1,computer:1};
   }
 }
-// | program is giving the feedback who wins the round 
+/*
+Debuging
+let test = playRound(1)
+console.log(`User score: ${test.user}\nComputer score: ${test.computer}`);
+*/
 // - > Function: game
 // | Program is playing 5 rounds
 // | program is sumarizing the score
