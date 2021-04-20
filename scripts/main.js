@@ -3,7 +3,7 @@
 // -> function: userInput
 function userInput(userChoice, i) {
   let promption;
-  if (userChoice && i > 1) {
+  if (i > 1) {
     // | computer is making the request for next choice
     return showPrompt(`Round number: ${i}!\n\nMake your choice: "rock", "paper" or "scissors":\n`, i);
   } else {
@@ -114,6 +114,27 @@ let test = playRound(1)
 console.log(`User score: ${test.user}\nComputer score: ${test.computer}`);
 */
 // - > Function: game
-// | Program is playing 5 rounds
-// | program is sumarizing the score
-//
+function game() {
+  let computerScore = 0;
+  let userScore = 0;
+  window.alert("Let's play some Rock Paper Scissor game!")
+  // | Program is playing 5 rounds
+  for (let i = 1; i < 6; i++) {
+    let round = playRound(i);
+    // | program is sumarizing the score
+    computerScore = computerScore + round.computer;
+    userScore = userScore + round.user;
+  }
+  // | computer is giveing the feedback about the winner:
+  let stdMessage = `Final score after five rounds: \nUser: ${userScore}\nComputer: ${computerScore}\n`;
+  // | compare the scores:
+  if (userScore > computerScore) {
+    return window.alert(`${stdMessage}\n Congratulations! User Wins!!!`);
+  } else if (userScore < computerScore) {
+    return window.alert(`${stdMessage}\n Congratulations! Computer Wins!!!`);
+  } else {
+    return window.alert(`${stdMessage}\n Game ends with draw!`);
+  }
+}
+
+game();
