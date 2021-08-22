@@ -154,7 +154,7 @@ function game() {
 		computerScore = computerScore + round.computer;
 		userScore = userScore + round.user;
 	}
-	// | computer is giveing the feedback about the winner:
+	// | computer is giving the feedback about the winner:
 	let stdMessage = `Final score after five rounds: \nUser: ${userScore}\nComputer: ${computerScore}\n`;
 	// | compare the scores:
 	if (userScore > computerScore) {
