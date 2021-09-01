@@ -33,7 +33,7 @@ function promptValidation(userChoice, i) {
 	) {
 		return userChoice;
 	} else {
-		// | if users imput is invalid, computer is asking for imput once again
+		// | if users input is invalid, computer is asking for input once again
 		window.alert(
 			`Incorrect input value: "${userChoice}"!\n\nPlease,type one of those: "rock", "paper" or "scissors"`
 		);
@@ -41,10 +41,10 @@ function promptValidation(userChoice, i) {
 	}
 }
 
-/* debuging:
+/* debugging:
 let choice = "nothing";
 console.log(`choice type: ${choice}`)
-console.log(`userInlut function result: ${userInput(choice, 1)}`);
+console.log(`userInput function result: ${userInput(choice, 1)}`);
 */
 // -> function: computerPlay
 function computerPlay() {
@@ -58,7 +58,7 @@ function computerPlay() {
 		return "scissors";
 	}
 }
-/* debuging computerPlay
+/* debugging computerPlay
 for (let i = 0; i < 15; i++) {
   console.log(`result no ${i} of computerPlay function: ${computerPlay()}`);
 }
@@ -73,7 +73,7 @@ function playRound(i) {
 	userChoice = userInput(userChoice, i);
 	// | Program is asking for computer's input
 	computerChoice = computerPlay();
-	// debuging:
+	// debugging:
 	//console.log(`computer choice: ${computerChoice}\nuser choice: ${userChoice}`)
 	// | run the comparing function
 	let result = compareChoices(
@@ -138,7 +138,7 @@ function compareChoices(userChoice, computerChoice, relation) {
 	}
 }
 /*
-Debuging
+Debugging
 let test = playRound(1)
 console.log(`User score: ${test.user}\nComputer score: ${test.computer}`);
 */
@@ -150,7 +150,7 @@ function game() {
 	// | Program is playing 5 rounds
 	for (let i = 1; i < 6; i++) {
 		let round = playRound(i);
-		// | program is sumarizing the score
+		// | program is summarizing the score
 		computerScore = computerScore + round.computer;
 		userScore = userScore + round.user;
 	}
@@ -166,4 +166,4 @@ function game() {
 	}
 }
 
-game();
+//game();
