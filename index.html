@@ -13,35 +13,38 @@
 		
 		<div class="container1">
 			<div class="container2">
-			<div class="pads TotoalScore">
-				<div><h1>Player: 5</h1></div><div><h1>Computer: 5</h1></div>
+				<div class="pads TotoalScore steeringPad">
+					<div class="steeringButtons items" data-flagg="1" id="start"><H1>START</H1></div>
+					<div class="steeringButtons items" data-flagg="0" id="stop"><h1>STOP</h1></div>
+				</div>
+			<div class="pads TotoalScore score">
+				<div><h1>Player: <span id="plyerScre">0</span></h1></div><div><h1>Computer: <span id="compScre">0</span></h1></div>
 			</div>
 			<div class="container3">
 				
 				<div class="pads chose plyer">
 					<h1>Player</h1>
-					<div class="buttons paper"><i class="far fa-hand-paper"></i></div>
-					<div class="buttons scissors"><i class="far fa-hand-scissors"></i></div>
-					<div class="buttons rock"><i class="far fa-hand-rock"></i></div>
+					<div class="buttons paper items" data-choice="paper"><i class="far fa-hand-paper"></i></div>
+					<div class="buttons scissors items" data-choice="scissors"><i class="far fa-hand-scissors"></i></div>
+					<div class="buttons rock items" data-choice="rock"><i class="far fa-hand-rock"></i></div>
 				</div>
 				<div>
-
 					<div class="pads RunninScore">
 						<div>
-							<p><h2>Round: 1</h2></p>
-							<h1>Player Wins</h1>
+							<p><h2>Round: <span id="roundNo">1</span></h2></p>
+							<h1 id="roundScore">Player Wins</h1>
 						</div>
 						<div class="ChoicePad">
-							<div class="buttons plyer"></div>
-							<div class="buttons computer"></div>
+							<div class="buttons plyer items"></div>
+							<div class="buttons computer items"></div>
 						</div>
 					</div>
 				</div>
-				<div class="pads chose">
+				<div class="pads chose computer">
 					<h1>Computer</h1>
-					<div class="buttons paper"><i class="far fa-hand-paper"></i></div>
-					<div class="buttons scissors"><i class="far fa-hand-scissors"></i></div>
-					<div class="buttons rock"><i class="far fa-hand-rock"></i></div>
+					<div class="buttons paper items"><i class="far fa-hand-paper"></i></div>
+					<div class="buttons scissors items"><i class="far fa-hand-scissors"></i></div>
+					<div class="buttons rock items"><i class="far fa-hand-rock"></i></div>
 				</div>
 			</div>
 		</div>

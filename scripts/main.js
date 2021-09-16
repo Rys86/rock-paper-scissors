@@ -2,6 +2,47 @@
 //Computer is asking passing the greetings and asking for the first choice
 // -> function: userInput
 */
+
+//Buttons:
+const paperButton = document.querySelector(".plyer > .paper");
+const scissorsButton = document.querySelector(".plyer > .scissors");
+const rockButton = document.querySelector(".plyer > .rock");
+const paperComputer = document.querySelector(".computer > .paper");
+const scissorsComputer = document.querySelector(".computer > .scissors");
+const rockComputer = document.querySelector(".computer > .rock");
+
+const roundNo = document.querySelector("#roundNo");
+const roundScore = document.querySelector("#roundScore");
+
+const plyerScre = document.querySelector("#plyerScre");
+const compScre = document.querySelector("#compScre");
+const startButton = document.querySelector("#start");
+const stopButton = document.querySelector("#stop");
+let computerScore = 0;
+let userScore = 0;
+let flag = 0;
+compScre.textContent = computerScore;
+plyerScre.textContent = userScore;
+
+let i = 1;
+
+function showResult(who, what) {
+	let result = document.querySelector(`.ChoicePad > .${who}`);
+	switch (what) {
+		case "rock":
+			result.innerHTML = '<i class="far fa-hand-rock"></i>';
+			break;
+		case "paper":
+			result.innerHTML = '<i class="far fa-hand-paper"></i>';
+			break;
+		case "scissors":
+			result.innerHTML = '<i class="far fa-hand-scissors"></i>';
+			break;
+	}
+	result.classList.add("press");
+	return result;
+}
+
 function userInput(userChoice, i) {
 	let promption;
 	if (i > 1) {
@@ -51,10 +92,13 @@ function computerPlay() {
 	// |Computer is drawing a lots
 	let draw = Math.floor(Math.random() * 9);
 	if (draw < 3) {
+		rockComputer.classList.add("press");
 		return "rock";
 	} else if (draw < 6) {
+		paperComputer.classList.add("press");
 		return "paper";
 	} else {
+		scissorsComputer.classList.add("press");
 		return "scissors";
 	}
 }
@@ -64,17 +108,20 @@ for (let i = 0; i < 15; i++) {
 }
 */
 // -> function: playRound:
-function playRound(i) {
+function playRound(i, choice) {
 	let userChoice;
 	let computerChoice;
 	// | Program is displaying the round number
-	window.alert(`Paper Rock Scissor game!\n\n Round Number ${i}`);
+	// window.alert(`Paper Rock Scissor game!\n\n Round Number ${i}`);
+	i == null ? (roundNo.textContent = 1) : (roundNo.textContent = i);
 	// | Program is asking for user's input
-	userChoice = userInput(userChoice, i);
+	userChoice = choice;
+	showResult("plyer", choice);
 	// | Program is asking for computer's input
 	computerChoice = computerPlay();
+	showResult("computer", computerChoice);
 	// debugging:
-	//console.log(`computer choice: ${computerChoice}\nuser choice: ${userChoice}`)
+	console.log(`computer choice: ${computerChoice}\nuser choice: ${userChoice}`);
 	// | run the comparing function
 	let result = compareChoices(
 		userChoice,
@@ -83,7 +130,8 @@ function playRound(i) {
 	);
 	// | program is giving the feedback who wins the round
 	// | show the message about result:
-	window.alert(result.message);
+	// window.alert(result.message);
+	roundScore.textContent = result.message;
 	// | return round score
 	return { user: result.user, computer: result.computer };
 }
@@ -119,19 +167,19 @@ function relations(userChoice) {
 function compareChoices(userChoice, computerChoice, relation) {
 	if (relation[userChoice] > relation[computerChoice]) {
 		return {
-			message: `Congratulations: ${userChoice} bits ${computerChoice}!\n\nUser wins!`,
+			message: "Player Win!", //`Congratulations: ${userChoice} bits ${computerChoice}!\n\nUser wins!`,
 			user: 1,
 			computer: 0,
 		};
 	} else if (relation[userChoice] < relation[computerChoice]) {
 		return {
-			message: `Sorry: ${computerChoice} bits ${userChoice}!\n\nComputer wins!`,
+			message: "Computer Win!", //`Sorry: ${computerChoice} bits ${userChoice}!\n\nComputer wins!`,
 			user: 0,
 			computer: 1,
 		};
 	} else if (relation[userChoice] == relation[computerChoice]) {
 		return {
-			message: `Round ends with draw!\n\nBoth Plyers choice was: ${computerChoice}`,
+			message: "Draw!", //`Round ends with draw!\n\nBoth Plyers choice was: ${computerChoice}`,
 			user: 1,
 			computer: 1,
 		};
@@ -143,27 +191,100 @@ let test = playRound(1)
 console.log(`User score: ${test.user}\nComputer score: ${test.computer}`);
 */
 // - > Function: game
-function game() {
+function game(choice) {
+	/*
+	const plyerScre = document.querySelector("#plyerScre");
+	const compScre = document.querySelector("#compScre");
 	let computerScore = 0;
 	let userScore = 0;
-	window.alert("Let's play some Rock Paper Scissor game!");
+	compScre.textContent = computerScore;
+	plyerScre.textContent = userScore;
+	*/
+	// window.alert("Let's play some Rock Paper Scissor game!");
 	// | Program is playing 5 rounds
-	for (let i = 1; i < 6; i++) {
-		let round = playRound(i);
+	// for (let i = 1; i < 6; i++) {
+	if (i < 6) {
+		let round = playRound(i, choice);
 		// | program is summarizing the score
 		computerScore = computerScore + round.computer;
 		userScore = userScore + round.user;
+		compScre.textContent = computerScore;
+		plyerScre.textContent = userScore;
+		if (round.computer == 1) {
+			compScre.classList.add("scale");
+		}
+		if (round.user == 1) {
+			plyerScre.classList.add("scale");
+		}
+		i++;
 	}
-	// | computer is giving the feedback about the winner:
-	let stdMessage = `Final score after five rounds: \nUser: ${userScore}\nComputer: ${computerScore}\n`;
-	// | compare the scores:
-	if (userScore > computerScore) {
-		return window.alert(`${stdMessage}\n Congratulations! User Wins!!!`);
-	} else if (userScore < computerScore) {
-		return window.alert(`${stdMessage}\n Congratulations! Computer Wins!!!`);
-	} else {
-		return window.alert(`${stdMessage}\n Game ends with draw!`);
+	if (i >= 6) {
+		i = 1;
+		flag = 0;
+		// | computer is giving the feedback about the winner:
+		/*let stdMessage = `Final score after five rounds: \nUser: ${userScore}\nComputer: ${computerScore}\n`;
+		// | compare the scores:
+		if (userScore > computerScore) {
+			return window.alert(`${stdMessage}\n Congratulations! User Wins!!!`);
+		} else if (userScore < computerScore) {
+			return window.alert(`${stdMessage}\n Congratulations! Computer Wins!!!`);
+		} else {
+			return window.alert(`${stdMessage}\n Game ends with draw!`);
+		}*/
+	}
+
+	// Transition
+}
+function removeTransition(e) {
+	if (e.propertyName !== "transform") {
+		return; // skip all events that are not the transform
+	}
+	// console.log(e.propertyName);
+	// console.log(this);
+	// "this" return int the element to which event listener is refering to, in this case, to "key"
+	this.classList.remove("press");
+	this.classList.remove("scale");
+}
+
+function addTransition() {
+	//console.log(this);
+	let what = this.dataset.choice;
+	this.classList.add("press");
+	if (flag == 1) {
+		game(what);
 	}
 }
 
+function switchTheFlag() {
+	this.classList.add("press");
+	flag = this.dataset.flagg;
+	//console.log(`flag is equal = ${flag}`);
+	if (flag == 1) {
+		computerScore = 0;
+		userScore = 0;
+		i = 1;
+		compScre.textContent = computerScore;
+		plyerScre.textContent = userScore;
+		roundNo.textContent = i;
+		roundScore.textContent = "Let's start The Game";
+		roundScore.classList.add("scale");
+		let results = document.querySelectorAll(".ChoicePad > *");
+		results.forEach((result) => {
+			result.innerHTML = "";
+			result.classList.add("press");
+		});
+	}
+}
+
+const buttons = document.querySelectorAll(".buttons");
+const items = document.querySelectorAll("*"); // create a list of all buttons
+//console.log(buttons);
+items.forEach((item) =>
+	item.addEventListener("transitionend", removeTransition)
+);
+startButton.addEventListener("click", switchTheFlag);
+stopButton.addEventListener("click", switchTheFlag);
+paperButton.addEventListener("click", addTransition);
+scissorsButton.addEventListener("click", addTransition);
+rockButton.addEventListener("click", addTransition);
 //game();
