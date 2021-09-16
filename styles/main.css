@@ -58,6 +58,7 @@
 }
 .plyer > .buttons:hover {
 	background-color: rgba(193, 194, 193, 0.659);
+	cursor: alias;
 }
 .computer > .buttons:hover {
 	cursor: not-allowed;
@@ -95,6 +96,7 @@ h2 {
 	/*font-size: 6vh;*/
 	transition: all 0.1s ease;
 	width: 50%;
+	cursor: pointer;
 }
 .steeringButtons:hover {
 	background-color: rgba(193, 194, 193, 0.659);
@@ -109,4 +111,29 @@ h2 {
 
 .scale {
 	transform: scale(1.5);
+}
+.popup {
+	transition: all 0.5s ease;
+	position: fixed;
+	left: 25%;
+	top: 25%;
+	width: 50%;
+	height: 50%;
+	background-color: rgb(157, 157, 157);
+	z-index: -1;
+	text-align: center;
+	box-shadow: 0 0 1rem #090701;
+}
+#popupButton {
+	transition: all 0.1s ease;
+	position: absolute;
+	left: 25%;
+	top: 70%;
+	width: 50%;
+	height: 10%;
+	background-color: rgb(87, 87, 87);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }

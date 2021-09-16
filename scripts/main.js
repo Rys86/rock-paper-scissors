@@ -10,14 +10,19 @@ const rockButton = document.querySelector(".plyer > .rock");
 const paperComputer = document.querySelector(".computer > .paper");
 const scissorsComputer = document.querySelector(".computer > .scissors");
 const rockComputer = document.querySelector(".computer > .rock");
+const startButton = document.querySelector("#start");
+const stopButton = document.querySelector("#stop");
+const popupButton = document.querySelector("#popupButton");
+const plyerButtons = document.querySelectorAll(".plyer > .buttons");
 
 const roundNo = document.querySelector("#roundNo");
 const roundScore = document.querySelector("#roundScore");
 
 const plyerScre = document.querySelector("#plyerScre");
 const compScre = document.querySelector("#compScre");
-const startButton = document.querySelector("#start");
-const stopButton = document.querySelector("#stop");
+const finalPopup = document.querySelector(".popup");
+const popupMessage = document.querySelector("#popupMessage");
+
 let computerScore = 0;
 let userScore = 0;
 let flag = 0;
@@ -222,15 +227,17 @@ function game(choice) {
 		i = 1;
 		flag = 0;
 		// | computer is giving the feedback about the winner:
-		/*let stdMessage = `Final score after five rounds: \nUser: ${userScore}\nComputer: ${computerScore}\n`;
+		let stdMessage = `Final score after five rounds: <br>User: ${userScore}<br>Computer: ${computerScore}<br><br>`;
 		// | compare the scores:
 		if (userScore > computerScore) {
-			return window.alert(`${stdMessage}\n Congratulations! User Wins!!!`);
+			popupMessage.innerHTML = `${stdMessage}<br> Congratulations! <br><br>User Wins!!!`;
 		} else if (userScore < computerScore) {
-			return window.alert(`${stdMessage}\n Congratulations! Computer Wins!!!`);
+			popupMessage.innerHTML = `${stdMessage}<br> Congratulations! <br><br>Computer Wins!!!`;
 		} else {
-			return window.alert(`${stdMessage}\n Game ends with draw!`);
-		}*/
+			popupMessage.innerHTML = `${stdMessage}<br> Game ends with draw!`;
+		}
+		plyerButtons.forEach((plyerButton) => (plyerButton.style.cursor = "alias"));
+		finalPopup.style.zIndex = "1";
 	}
 
 	// Transition
@@ -249,8 +256,8 @@ function removeTransition(e) {
 function addTransition() {
 	//console.log(this);
 	let what = this.dataset.choice;
-	this.classList.add("press");
 	if (flag == 1) {
+		this.classList.add("press");
 		game(what);
 	}
 }
@@ -269,11 +276,19 @@ function switchTheFlag() {
 		roundScore.textContent = "Let's start The Game";
 		roundScore.classList.add("scale");
 		let results = document.querySelectorAll(".ChoicePad > *");
+		plyerButtons.forEach(
+			(plyerButton) => (plyerButton.style.cursor = "pointer")
+		);
 		results.forEach((result) => {
 			result.innerHTML = "";
 			result.classList.add("press");
 		});
 	}
+}
+
+function hidePopup() {
+	this.classList.add("press");
+	finalPopup.style.zIndex = "-1";
 }
 
 const buttons = document.querySelectorAll(".buttons");
@@ -287,4 +302,5 @@ stopButton.addEventListener("click", switchTheFlag);
 paperButton.addEventListener("click", addTransition);
 scissorsButton.addEventListener("click", addTransition);
 rockButton.addEventListener("click", addTransition);
+popupButton.addEventListener("click", hidePopup);
 //game();
